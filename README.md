@@ -36,6 +36,7 @@ for production use.
   * PIVX
   * RVN
   * VRSC
+  * XRP
   * XSG
   * ZCL
   * ZEC
@@ -70,4 +71,3 @@ type.
 # License
 
 MIT
-

@@ -7,6 +7,11 @@ function isValidAddress(coin, address) {
   if (address === undefined) {
     return false;
   }
+  // returns a special regex according https://xrpl.org/accounts.html#address-encoding
+  var xrp = function (min,max) {
+    var chars = "[rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz]";
+    return chars + "{" + min + "," + max + "}";
+  }
   // returns a regex that will match num base58 chars
   var base58 = function (num) {
     var chars = "[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]";
@@ -33,7 +38,7 @@ function isValidAddress(coin, address) {
   }
 
   var assets = [
-    "AXO", "BET", "BNTN", "BOTS", "BTCH",
+    "XRP", "AXO", "BET", "BNTN", "BOTS", "BTCH",
     "CCL", "CEAL", "CHAIN", "COQUI", "DEX",
     "DION", "DSEC", "EQL", "ETOMIC", "GLXT",
     "HODL", "JUMBLR", "KMDICE", "KV", "K64", "MESH",
@@ -44,6 +49,7 @@ function isValidAddress(coin, address) {
 
   var coinRegexen = {
     // NOTE: technically sprout addrs are valid but no longer can receive funds, let's consider invalid
+    "XRP":  new RegExp("^r" + xrp(24,34) + "$"),
     "ARRR": new RegExp("^(" + sapling() + ")|(R" + base58(33) + ")$"),
     "BTC" : new RegExp("^(3" + base58(33) + ")|(1" + base58(33) + ")$"),
     //GK18bp4UzC6wqYKKNLkaJ3hzQazTc3TWBw

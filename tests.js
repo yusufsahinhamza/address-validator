@@ -1,4 +1,9 @@
 
+QUnit.test( "XRP: invalid addresses which have correct prefixes", function( assert ) {
+  assert.notOk( isValidAddress("XRP", "rHb9CJAWyB4rj91VRWn96Dku") , "Passed!" );
+  assert.notOk( isValidAddress("XRP", "rHb9CJAWyB4rj91VRWn96Dkukl") , "Passed!" );
+});
+
 QUnit.test( "BTC: invalid addresses which have correct prefixes", function( assert ) {
   assert.notOk( isValidAddress("BTC", "1invalid") , "Passed!" );
   assert.notOk( isValidAddress("BTC", "3invalid") , "Passed!" );
